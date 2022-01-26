@@ -1,5 +1,7 @@
-import { ctx } from './main.js'
+// General imports
+import { ctx } from '../main.js'
 
+// General class for creatig game characters
 export class Character {
     constructor(src, posX, posY, velX, VelY, width, height) {
         this.position = {
@@ -19,9 +21,9 @@ export class Character {
         this.height = height
     }
 
-    draw() {
+    draw(posX, posY) {
         if (this.image)
-        ctx.drawImage(this.image, this.position.x, this.position.y)
+        ctx.drawImage(this.image, !posX ? this.position.x : posX, !posY ? this.position.y : posY, this.width, this.height)
     }
 
 }

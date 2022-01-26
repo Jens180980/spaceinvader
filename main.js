@@ -1,34 +1,37 @@
-import { Character } from './characters.js'
+// Class and constant imports
+import { Spaceship, spaceshipHeight, spaceshipWidth } from './Modules/spaceship.js'
+import { InvaderGrid } from './Modules/invaders.js'
 
+// Setting canvas, dimensions and timer
 const canvas = document.querySelector('canvas')
 export const ctx = canvas.getContext('2d')
-
-canvas.width = innerWidth
+canvas.width = innerWidth,
 canvas.height = innerHeight
+export const spaceshipCenterX = canvas.width / 2 - spaceshipWidth 
+export const spaceshipCenterY = canvas.height - spaceshipHeight
+let frameCount = 0
+let timer = 100
 
-const spaceshipWidth = 100
-const spaceshipHeight = 100
-const spaceshipVelX = 5
-const spaceshipCenterX = canvas.width / 2 - spaceshipWidth 
-const spaceshipCenterY = canvas.height - spaceshipHeight
 
-const spaceship = new Character('./spaceship.png', spaceshipCenterX, spaceshipCenterY, spaceshipVelX, 0, spaceshipWidth, spaceshipHeight)
+// Creating player-spaceship and alien invader instance
+const spaceship = new Spaceship()
+const invaders = new InvaderGrid()
 
-addEventListener('keydown', ({key}) => {
-    switch(key) {
-        case 'a' : spaceship.position.x -= spaceship.velocity.x
-        break
-        case 'd' : spaceship.position.x += spaceship.velocity.x
-        break
-        case ' ' : console.log('shoot')
-    }
-})
 
+
+//Animation Loop
 function animate () {
     requestAnimationFrame(animate)
+    frameCount += 1
+    if(frameCount % 50 === 0) {
+        timer += 50
+    }
+    ctx.fillStyle = 'black'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    invaders.invaderArr.map((item, index) => {
+        item.update(index*50+timer, 100)
+    })
     spaceship.update()
 }
-
-animate()
-
+ animate()
 
