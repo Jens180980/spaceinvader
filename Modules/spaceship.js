@@ -22,7 +22,7 @@ export class Spaceship extends Character {
     }
 
     update() {
-       this.draw()
+       this.draw(1)
        
        addEventListener('keydown', ({key}) => {
             switch(key) {

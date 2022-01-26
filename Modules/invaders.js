@@ -2,38 +2,48 @@
 import  { Character } from './characters.js'
 import { spaceshipCenterX } from '../main.js'
 
-// Location constants
-const spaceBetweenInvaders = 50
-
 //Class for creating invaders
 export class Invader extends Character {
-    constructor(posX, posY) {
-        super('../Img/invader.svg', posX, posY, 0, 0, 50, 50 )
-    }
-
-    update(posX, posY) {
-        this.draw(posX, posY)
+    constructor() {
+        super('../Img/invaders.svg', posX, posY, velX, velY, 50, 50)
     }
 }
 
-export class InvaderGrid {
-    constructor(velY) {
+export class Invaders {
+    constructor() {
         this.position = {
-            x: 0,
-            y: 200
+            x: 100,
+            y: 100
         }
         this.velocity = {
-            x: 0,
-            y: velY
+            x: 5,
+            y: 0
         }
-        this.invaderArr = []
+        this.timer = 0
 
-        for (let i = 1; i < 10; i++) {
-            this.position.x = i * spaceBetweenInvaders
-            this.invaderArr.push(new Invader(spaceshipCenterX + this.position.x, this.position.y))
-        }
     }
 
+    update() {
+        this.timer += this.velocity.x
+        console.log(this.timer);
+        let invaderArr = []
+        for(let i = 0; i < 10; i++ ) {
+            invaderArr.push(new Character('../Img/invader.svg', this.position.x, this.position.y, this.velocity.x, this.velocity.y, 50, 50))
+            this.position.x += 50
+        }
+        invaderArr.map((item, index) => {
+            item.draw(invaderArr.length -1)
+        })
+
+        invaderArr = []
+        this.position.x = 100 + this.timer
+
+    }
 }
+
+
+
+
+
 
 

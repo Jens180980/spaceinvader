@@ -21,9 +21,12 @@ export class Character {
         this.height = height
     }
 
-    draw(posX, posY) {
-        if (this.image)
-        ctx.drawImage(this.image, !posX ? this.position.x : posX, !posY ? this.position.y : posY, this.width, this.height)
+    draw(loopCount) {
+        for(let i=0; i<loopCount; i++) {
+            if (this.image)
+            ctx.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
+        }
+        
     }
 
 }
