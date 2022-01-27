@@ -1,6 +1,6 @@
 // General imports
 import  { Character } from './characters.js'
-import { spaceshipCenterX } from '../main.js'
+import { canvasWidth } from '../main.js'
 
 //Class for creating invaders
 export class Invader extends Character {
@@ -20,24 +20,23 @@ export class Invaders {
             y: 0
         }
         this.timer = 0
-
     }
 
     update() {
-        this.timer += this.velocity.x
-        console.log(this.timer);
+        
         let invaderArr = []
+
         for(let i = 0; i < 10; i++ ) {
             invaderArr.push(new Character('../Img/invader.svg', this.position.x, this.position.y, this.velocity.x, this.velocity.y, 50, 50))
             this.position.x += 50
         }
-        invaderArr.map((item, index) => {
+
+        invaderArr.map((item) => {
             item.draw(invaderArr.length -1)
         })
 
         invaderArr = []
-        this.position.x = 100 + this.timer
-
+        
     }
 }
 
