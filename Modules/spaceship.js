@@ -12,7 +12,6 @@ export const spaceshipVelX = 0
 const keysPressed = {
     a: false,
     d: false,
-    space : false
     }
 
 // Creates your spaceship
@@ -29,8 +28,6 @@ export class Spaceship extends Character {
                 case 'a' : keysPressed.a = true
                 break
                 case 'd' : keysPressed.d = true
-                break
-                case ' ' : keysPressed.space = true
             }
         })
 
@@ -39,8 +36,6 @@ export class Spaceship extends Character {
                 case 'a' : keysPressed.a = false
                 break
                 case 'd' : keysPressed.d = false
-                break
-                case ' ' : keysPressed.space = false
             }
         })
 
