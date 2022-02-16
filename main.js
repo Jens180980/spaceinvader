@@ -1,7 +1,7 @@
 // Class and constant imports
 import { Spaceship, spaceshipHeight, spaceshipWidth } from './Modules/spaceship.js'
 import { Invaders } from './Modules/invaders.js'
-import { SpaceshopProjectiles } from './Modules/projectiles.js'
+import { Projectile } from './Modules/projectiles.js'
 
 // Setting canvas, dimensions and timer
 const canvas = document.querySelector('canvas')
@@ -12,10 +12,18 @@ export const canvasWidth = canvas.width
 export const spaceshipCenterX = canvas.width / 2 - spaceshipWidth 
 export const spaceshipCenterY = canvas.height - spaceshipHeight
 
-// Creating player-spaceship and alien invader instance
+// Creating instances
 export const spaceship = new Spaceship()
-const invaders = new Invaders()
-const projectile = new SpaceshopProjectiles()
+export const invaders = new Invaders()
+
+//Spaceship projectiles
+const spaceshipProjectilesArr = []
+const spaceshipProjectileVel = 10
+addEventListener('keydown', ({key}) => {
+    if(key == ' ') {
+        spaceshipProjectilesArr.push(new Projectile(spaceship.position.x + spaceshipWidth/2, spaceship.position.y, spaceshipProjectileVel))
+    }
+})
 
 //Animation Loop
 function animate () {
@@ -24,7 +32,7 @@ function animate () {
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     spaceship.update()
     invaders.update()
-    projectile.update()
+    spaceshipProjectilesArr.map(item => item.draw())
 }
  animate()
 
