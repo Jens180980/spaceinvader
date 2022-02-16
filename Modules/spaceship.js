@@ -38,9 +38,7 @@ export class Spaceship extends Character {
                 break
                 case 'd' : keysPressed.d = false
             }
-        })
-
-        
+        })  
 
         //Moves player to the left or right, as long as "a" or "d" is pressed
  
@@ -50,9 +48,7 @@ export class Spaceship extends Character {
                 this.velocity.x = 10
             } else {
                 this.velocity.x = 0
-            }
-
-        
+            }   
 
         // Moves player velocity.x-value for every update
        this.position.x += this.velocity.x 

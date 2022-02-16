@@ -1,7 +1,7 @@
 // Class and constant imports
 import { Spaceship, spaceshipHeight, spaceshipWidth } from './Modules/spaceship.js'
 import { Invaders } from './Modules/invaders.js'
-import { Projectile } from './Modules/projectiles.js'
+import { spaceshipProjectilesArr } from './Modules/projectiles.js'
 
 // Setting canvas, dimensions and timer
 const canvas = document.querySelector('canvas')
@@ -16,14 +16,8 @@ export const spaceshipCenterY = canvas.height - spaceshipHeight
 export const spaceship = new Spaceship()
 export const invaders = new Invaders()
 
-//Spaceship projectiles
-const spaceshipProjectilesArr = []
-const spaceshipProjectileVel = 10
-addEventListener('keydown', ({key}) => {
-    if(key == ' ') {
-        spaceshipProjectilesArr.push(new Projectile(spaceship.position.x + spaceshipWidth/2, spaceship.position.y, spaceshipProjectileVel))
-    }
-})
+//Invader projectiles
+
 
 //Animation Loop
 function animate () {
