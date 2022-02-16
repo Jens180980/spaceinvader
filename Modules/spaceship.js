@@ -2,7 +2,7 @@
 import { Character } from './characters.js'
 import { spaceshipCenterX } from '../main.js'
 import { spaceshipCenterY } from '../main.js'
-import { canvasWidth } from '../main.js'
+import { canvas } from '../main.js'
 
 //Constant exports
 export const spaceshipWidth = 100
@@ -44,7 +44,7 @@ export class Spaceship extends Character {
  
             if(keysPressed.a && this.position.x > 0) {
                 this.velocity.x = -10
-            } else if (keysPressed.d && this.position.x < canvasWidth - spaceshipWidth) {
+            } else if (keysPressed.d && this.position.x < canvas.width - spaceshipWidth) {
                 this.velocity.x = 10
             } else {
                 this.velocity.x = 0

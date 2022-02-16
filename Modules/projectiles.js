@@ -3,6 +3,7 @@ import { spaceship } from "../main.js"
 import { spaceshipWidth } from "./spaceship.js"
 import { invaders } from "../main.js"
 import { invadersWidth, invaderHeight } from "./invaders.js"
+import { canvas } from "../main.js"
 
 //General projectile class
 export class Projectile {
@@ -20,6 +21,7 @@ export class Projectile {
         this.height = 10
         this.timer = 0
         this.shotDirection = shotDirection
+        this.projectileArr = []
 
     }
 
@@ -27,6 +29,20 @@ export class Projectile {
             ctx.fillStyle = 'white'
             ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
             this.position.y += this.timer - 1*this.velocity.y * this.shotDirection
+    }
+
+    update() {
+        this.draw()
+        spaceshipProjectilesArr.map(item => {
+            if(item.position.y < 0){
+                spaceshipProjectilesArr.splice(item, 1)
+            }
+        })
+       invaderProjectilesArr.map(item => {
+           if(item.position.y > canvas.height) {
+               invaderProjectilesArr.splice(item, 1)
+           }
+       }) 
     }
 }
 
@@ -36,7 +52,7 @@ const spaceshipProjectileVel = 30
 
 addEventListener('keydown', ({key}) => {
     if(key == ' ') {
-        spaceshipProjectilesArr.push(new Projectile(spaceship.position.x + spaceshipWidth/2, spaceship.position.y, spaceshipProjectileVel, 1))
+        spaceshipProjectilesArr.push(new Projectile(spaceship.position.x + spaceshipWidth/2, spaceship.position.y, spaceshipProjectileVel, 1))   
     }
 })
 
@@ -45,7 +61,6 @@ export const invaderProjectilesArr = []
 const invaderProjectilesVel = 10
 const firingInterval = 2000
 let randomFire
-
 
 setInterval( () => {
     randomFire = Math.random() * (invadersWidth)

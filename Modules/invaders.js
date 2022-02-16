@@ -1,6 +1,6 @@
 // General imports
 import  { Character } from './characters.js'
-import { canvasWidth } from '../main.js'
+import { canvas } from '../main.js'
 
 export const invaderWidth = 50
 export const invaderHeight = 50
@@ -48,7 +48,7 @@ export class Invaders {
         })
 
         //Invader boundary control
-        if(this.position.x > canvasWidth) {
+        if(this.position.x > canvas.width) {
             this.direction = 'right'
         }
         if(this.position.x < 0 + (this.width * invaderArr.length)) {
