@@ -1,8 +1,5 @@
 // Constant and Class imports
-import { Character } from './characters.js'
-import { spaceshipCenterX } from '../main.js'
-import { spaceshipCenterY } from '../main.js'
-import { canvas } from '../main.js'
+import { canvas, ctx } from '../main.js'
 
 //Constant exports
 export const spaceshipWidth = 100
@@ -16,9 +13,30 @@ const keysPressed = {
     }
 
 // Creates your spaceship
-export class Spaceship extends Character {
-    constructor() {
-        super('./Img/spaceship.svg', spaceshipCenterX, spaceshipCenterY, spaceshipVelX, 0, spaceshipWidth, spaceshipHeight)
+export class Spaceship{
+    constructor(posX, posY) {
+        this.position = {
+            x: posX,
+            y: posY
+        }
+        this.velocity = {
+            x: spaceshipVelX,
+            y: 0
+        }
+        
+        const spaceshipImg = new Image()
+        spaceshipImg.src = './Img/spaceship.svg'
+        this.image = spaceshipImg
+
+        this.width = spaceshipWidth
+        this.height = spaceshipHeight
+    }
+
+    draw(loopCount) {
+        for(let i=0; i<loopCount; i++) {
+            if (this.image)
+            ctx.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
+        }
     }
 
     update() {

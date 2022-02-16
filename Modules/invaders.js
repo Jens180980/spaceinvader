@@ -1,57 +1,53 @@
 // General imports
-import  { Character } from './characters.js'
-import { canvas } from '../main.js'
+import { canvas, ctx } from '../main.js'
 
 export const invaderWidth = 50
 export const invaderHeight = 50
 export const enemyAmount = 10
 export const invadersWidth = invaderWidth * enemyAmount
 
+//Creating array of invaders
+export let invadersArr = []
+
+
 
 //Class for creating invaders
-export class Invader extends Character {
-    constructor() {
-        super('../Img/invaders.svg', posX, posY, velX, velY, 50, 50)
-    }
-}
-
-//Class for creating line of invaders
-export class Invaders {
-    constructor() {
+export class Invader {
+    constructor(posX, posY) {
         this.position = {
-            x: 0,
-            y: 50
+            x: posX,
+            y: posY
         }
         this.velocity = {
-            x: 5,
-            y: 1
+            x: 0,
+            y: 0
         }
+        
+        const invaderImg = new Image()
+        invaderImg.src = './Img/invader.svg'
+        this.image = invaderImg
+
         this.width = invaderWidth
         this.height = invaderHeight
         this.timer = 0
-        this.direction = 'left'
-        this.enemyAmount = enemyAmount
+    }
+    
+    draw() {
+            ctx.drawImage(this.image, this.position.x, this.position.y, this.width, this.height)
     }
 
     update() {
 
-        //Creating array of invaders
-        let invaderArr = []
-        for(let i = 0; i < enemyAmount; i++ ) {
-            invaderArr.push(new Character('../Img/invader.svg', this.position.x, this.position.y, this.velocity.x, this.velocity.y, this.width, this.height))
-            this.position.x += this.width
-        }
-
         //Iterating draw method on array-items
-        invaderArr.map( item => {
-            item.draw(invaderArr.length -1)
+        invadersArr.map( item => {
+            item.draw()
         })
 
         //Invader boundary control
         if(this.position.x > canvas.width) {
             this.direction = 'right'
         }
-        if(this.position.x < 0 + (this.width * invaderArr.length)) {
+        if(this.position.x < 0 + (this.width * invadersArr.length)) {
             this.direction = 'left'
         }
 
@@ -65,10 +61,21 @@ export class Invaders {
         //Positioning
         this.position.x = 0 + this.timer
 
-        //Resetting array
-        invaderArr = []   
+        invadersArr = []
+        }
     }
-}
+
+    for(let i = 0; i < enemyAmount; i++ ) {
+        invadersArr.push(new Invader(50, 0))
+        // this.position.x += this.width
+    }
+
+    const test = new Invader(50, 0)
+
+    console.log(invadersArr);
+
+
+
 
 
 
