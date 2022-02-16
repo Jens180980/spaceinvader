@@ -2,6 +2,7 @@
 import { Character } from './characters.js'
 import { spaceshipCenterX } from '../main.js'
 import { spaceshipCenterY } from '../main.js'
+import { canvasWidth } from '../main.js'
 
 //Constant exports
 export const spaceshipWidth = 100
@@ -39,14 +40,19 @@ export class Spaceship extends Character {
             }
         })
 
+        
+
         //Moves player to the left or right, as long as "a" or "d" is pressed
-        if(keysPressed.a === true) {
-            this.velocity.x = -10
-        } else if (keysPressed.d === true) {
-            this.velocity.x = 10
-        } else {
-            this.velocity.x = 0
-        }
+ 
+            if(keysPressed.a && this.position.x > 0) {
+                this.velocity.x = -10
+            } else if (keysPressed.d && this.position.x < canvasWidth - spaceshipWidth) {
+                this.velocity.x = 10
+            } else {
+                this.velocity.x = 0
+            }
+
+        
 
         // Moves player velocity.x-value for every update
        this.position.x += this.velocity.x 

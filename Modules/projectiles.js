@@ -1,9 +1,6 @@
-import { spaceship } from "../main.js"
 import { ctx } from "../main.js"
 
-
-
-//Spaceship projectiles
+//General projectile class
 export class Projectile {
     constructor(posX, posY, velY) {
         this.position = {

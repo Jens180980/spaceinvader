@@ -9,6 +9,7 @@ export class Invader extends Character {
     }
 }
 
+//Class for creating line of invaders
 export class Invaders {
     constructor() {
         this.position = {
@@ -28,17 +29,19 @@ export class Invaders {
 
     update() {
 
+        //Creating array of invaders
         let invaderArr = []
-
         for(let i = 0; i < this.enemyAmount; i++ ) {
             invaderArr.push(new Character('../Img/invader.svg', this.position.x, this.position.y, this.velocity.x, this.velocity.y, this.width, this.height))
             this.position.x += this.width
         }
 
+        //Iterating draw method on array-items
         invaderArr.map( item => {
             item.draw(invaderArr.length -1)
         })
 
+        //Invader boundary control
         if(this.position.x > canvasWidth) {
             this.direction = 'right'
         }
@@ -53,8 +56,10 @@ export class Invaders {
             this.timer -=1*this.velocity.x
         }
 
+        //Positioning
         this.position.x = 0 + this.timer
 
+        //Resetting array
         invaderArr = []   
     }
 }
