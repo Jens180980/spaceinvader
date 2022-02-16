@@ -2,6 +2,12 @@
 import  { Character } from './characters.js'
 import { canvasWidth } from '../main.js'
 
+export const invaderWidth = 50
+export const invaderHeight = 50
+export const enemyAmount = 10
+export const invadersWidth = invaderWidth * enemyAmount
+
+
 //Class for creating invaders
 export class Invader extends Character {
     constructor() {
@@ -20,18 +26,18 @@ export class Invaders {
             x: 5,
             y: 1
         }
-        this.width = 50
-        this.height = 50
+        this.width = invaderWidth
+        this.height = invaderHeight
         this.timer = 0
         this.direction = 'left'
-        this.enemyAmount = 10
+        this.enemyAmount = enemyAmount
     }
 
     update() {
 
         //Creating array of invaders
         let invaderArr = []
-        for(let i = 0; i < this.enemyAmount; i++ ) {
+        for(let i = 0; i < enemyAmount; i++ ) {
             invaderArr.push(new Character('../Img/invader.svg', this.position.x, this.position.y, this.velocity.x, this.velocity.y, this.width, this.height))
             this.position.x += this.width
         }

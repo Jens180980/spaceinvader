@@ -2,6 +2,7 @@
 import { Spaceship, spaceshipHeight, spaceshipWidth } from './Modules/spaceship.js'
 import { Invaders } from './Modules/invaders.js'
 import { spaceshipProjectilesArr } from './Modules/projectiles.js'
+import { invaderProjectilesArr } from './Modules/projectiles.js'
 
 // Setting canvas, dimensions and timer
 const canvas = document.querySelector('canvas')
@@ -27,6 +28,7 @@ function animate () {
     spaceship.update()
     invaders.update()
     spaceshipProjectilesArr.map(item => item.draw())
+    invaderProjectilesArr.map(item => item.draw())
 }
  animate()
 
